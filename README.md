@@ -25,15 +25,15 @@ Example
 Simtimer allows transformation between datetimes (POSIXt) and sim\_datetimes (integer) with `sim_datetime()` and `datetime()`.
 
 ``` r
-origin_date <- lubridate::ymd_hms("2016-01-01 00:00:00")
-my_datetime <-  lubridate::ymd_hms("2016-01-02 01:01:01")
-my_simdatetime <- sim_datetime(my_datetime, origin_date)
+origin_date <- as.POSIXct("2016-01-01 00:00:00", tz = "UTC")
+my_datetime <-  as.POSIXct("2016-01-02 01:01:01", tz = "UTC")
+my_simdatetime <- as.sim_datetime(my_datetime, origin_date)
 my_simdatetime
 #> [1] 90061
 ```
 
 ``` r
-datetime(my_simdatetime, origin_date)
+as.datetime(my_simdatetime, origin_date)
 #> [1] "2016-01-02 01:01:01 UTC"
 ```
 
@@ -43,7 +43,7 @@ Simtimer allows to manipulate sim\_datetimes and extract parts of sim\_datetimes
 sim_time(my_simdatetime)
 #> [1] 3661
 sim_wday(my_simdatetime, origin_date)
-#> [1] "Sat"
+#> [1] "6"
 sim_date(my_simdatetime)
 #> [1] 1
 ```
